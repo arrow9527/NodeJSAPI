@@ -1,4 +1,5 @@
 var faker = require('faker');
+const companyController = require('../controllers/company_controller');
 var express = require('express');
 var router = express.Router();
 
@@ -47,5 +48,9 @@ router.delete("/product/:id", function (req, res) {
   // 最後傳送響應告訴前端已刪除成功
   res.send({ success: true, data }).end();
 });
+
+// company
+router.get('/companys', companyController.getAll)
+router.get('/company/:id', companyController.get)
 
 module.exports = router;
