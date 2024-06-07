@@ -1,8 +1,17 @@
+var faker = require('faker');
 var express = require('express');
 var router = express.Router();
 
+faker.locale = 'zh_TW';
+
 // 自行建立的 data
-const data = [{ id: 1, name: "小明" }];
+const data = [{
+  id: 1,
+  name: faker.commerce.productName(),
+  price: faker.commerce.price(100, 200, 0, '$'),
+  adjective: faker.commerce.productAdjective(),
+  description: faker.commerce.productDescription()
+}];
 // 設置請求路徑為 /products 請求方法為 get
 router.get("/products", function (req, res, next) {
   // 使用 res.send() 方法設置響應傳送 { success: true, data }
