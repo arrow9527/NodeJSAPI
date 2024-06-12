@@ -1,5 +1,6 @@
 var faker = require('faker');
 const companyController = require('../controllers/company_controller');
+const clientController = require('../controllers/client_controller');
 var express = require('express');
 var router = express.Router();
 
@@ -52,5 +53,9 @@ router.delete("/product/:id", function (req, res) {
 // company
 router.get('/companys', companyController.getAll)
 router.get('/company/:id', companyController.get)
+
+// client
+router.get('/clients', clientController.getAll)
+router.get('/client/:id', clientController.get)
 
 module.exports = router;
