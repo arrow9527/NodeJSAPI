@@ -1,6 +1,10 @@
 var faker = require('faker');
 const companyController = require('../controllers/company_controller');
 const clientController = require('../controllers/client_controller');
+const authController = require('../controllers/auth_controller');
+
+const authMiddleware = require('../middleware/auth_middleware');
+
 var express = require('express');
 var router = express.Router();
 
@@ -51,11 +55,19 @@ router.delete("/product/:id", function (req, res) {
 });
 
 // company
-router.get('/companys', companyController.getAll)
-router.get('/company/:id', companyController.get)
+router.get('/companys', authMiddleware, companyController.getAll)
+router.get('/company/:id', authMiddleware, companyController.get)
 
 // client
-router.get('/clients', clientController.getAll)
-router.get('/client/:id', clientController.get)
+router.get('/clients', authMiddleware, clientController.getAll)
+router.get('/client/:id', authMiddleware, clientController.get)
+
+// // 註冊路由
+// router.post('/register', authController.register);
+// 登入路由
+router.post('/login', authController.login);
+// auth
+router.get('/auths', authController.getAll)
+router.get('/auth/:id', authController.get)
 
 module.exports = router;

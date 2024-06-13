@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
+// 載入環境變數
+require('dotenv').config();
+
 var app = express();
 
 // view engine setup
